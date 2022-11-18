@@ -5,7 +5,7 @@ from django.http import HttpResponse
 def navbar(Logo, Page):
 	logo = Logo.objects.filter(is_published=True)
 	pages = Page.objects.order_by('list_order').filter(is_published=True)
-
+	
 	return logo, pages
 	
 def index(request):

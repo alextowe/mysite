@@ -1,24 +1,22 @@
+{% load active_link_tags %}
+
 <nav class="navbar navbar-expand-lg">
 	<div class="container">
 		{% if logo %}
 			{% for logo in logo %}
-				<a class="navbar-brand" href="{% url 'index' %}">{{ logo.title }}</a>
+				<a  class="navbar-brand" href="{% url 'index' %}">{{ logo.title }}</a>
 			{% endfor %}
 		{% else %}
-			<a class="nav-link" href="{% url 'index' %}">No Logo</a>
+			<a class="nav-link" href="">No Logo</a>
 		{% endif %}
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 		<div class="navbar-nav">
-			{% if pages %}
-				{% for page in pages %}
-					<a class="nav-link" href="{% url page.url %}">{{ page.title }}</a>
-				{% endfor %}
-			{% else %}
-			<a class="nav-link" href="{% url 'index' %}">No Links</a>
-			{% endif %}
+			{% for page in pages %}
+				<a class="nav-link {% active_link page.url 'active text-success' %}" href="{% url page.url %}">{{ page.url }}</a>
+			{% endfor %}
 		</div>
 		</div>
 	</div>
