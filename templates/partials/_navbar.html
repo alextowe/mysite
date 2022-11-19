@@ -18,6 +18,8 @@
 				{% for page in pages %}
 					<a class="nav-link {% active_link page.url 'active text-success' %}" href="{% url page.url %}">{{ page.title }}</a>
 				{% endfor %}
+			{% else %}
+				<a class="nav-link" href="">No Pages</a>
 			{% endif %}
 		</div>
 		</div>
