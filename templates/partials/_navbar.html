@@ -1,5 +1,3 @@
-{% load active_link_tags %}
-
 <nav class="navbar navbar-expand-lg">
 	<div class="container">
 		{% if logo %}
@@ -16,7 +14,7 @@
 		<div class="navbar-nav">
 			{% if pages %}
 				{% for page in pages %}
-					<a class="nav-link {% active_link page.url 'active text-success' %}" href="{% url page.url %}">{{ page.title }}</a>
+					<a class="nav-link" href="{% url page.url %}">{{ page.title }}</a>
 				{% endfor %}
 			{% else %}
 				<a class="nav-link" href="">No Pages</a>
