@@ -3,22 +3,18 @@ from django.http import HttpResponse
 from .models import Post
 
 def blog(request):
-
 	posts = Post.objects.order_by('date_added').filter(is_published=True)
-	
 	context = {
 		'posts': posts,
-	}
-	
+	}	
 	return render(request, 'blog/blog.html', context)
 	
 def post_detail(request, slug):
-	posts = Post.objects.all()
+	posts = Post.objects.filter(is_published=True)
 	for post in posts:
 		if post.slug == slug:
 			current_post = post
 	context = {
 		'post': current_post,
 	}
-	
-	return render(request, 'blog/post_detail.html', context)
+	return render(request, 'blog/post.html', context)
