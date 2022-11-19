@@ -3,18 +3,18 @@
 {% block title %} | Blog {% endblock%}
 
 {% block content %}
-	<section id="post_detail">
-		<div class="container">
-			 <div class="row">
-				{% if post %}
-					<h2 class="">{{ post.title }}</h2>
-					<p class="">{{ post.author }} </p>
-					<p class="">{{ post.date_added }} </p>
-					<p class="">{{ post.content }}</p>
-				{% else %}
-					<p>No Post</p>
-				{% endif %}
-			</div>	
-		</div>
-	</section>
+<section id="post_detail">
+	<div class="container">
+		<div class="row">
+			{% if post %}
+				<h2 class="">{{ post.title }}</h2>
+				<p class="">{{ post.author }} </p>
+				<p class="">{{ post.date_added }} </p>
+				<p class="">{{ post.content }}</p>
+			{% else %}
+				<p>No Post</p>
+			{% endif %}
+		</div>	
+	</div>
+</section>
 {% endblock %}
