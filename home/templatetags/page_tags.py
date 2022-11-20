@@ -19,11 +19,9 @@ def render_title_bar(path):
 	elif len(path.split('/')) > 3:
 		path = path.split('/')[2]
 		context = Post.objects.filter(is_published=True, has_title=True, slug=path)[0]
-		print(path)
 	elif len(path.split('/')) <= 3:
 		path = path.split('/')[1]
 		context = Page.objects.filter(is_published=True, has_title=True, url=path).exclude(url='index')[0]
-		print(path)
 	
 	return {'context':context}
 				
