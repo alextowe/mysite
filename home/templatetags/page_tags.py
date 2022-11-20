@@ -14,14 +14,11 @@ def render_nav_menu():
 @register.inclusion_tag('partials/_titlebar.html')
 def render_title_bar(path):
 	"""Renders the title bar for all pages except home."""
-	if path == '/':
-		return None
-	else:
-		pages = Page.objects.order_by('list_order').filter(is_published=True).exclude(url='index')
-		path = path[1:][:-1]
-		for page in pages:
-			if page.url == path:
-				current_page = page
+	path = path[1:][:-1]
+	current_page = None
+	pages = Page.objects.order_by('list_order').filter(is_published=True, has_title=True)
+	
+	for page in pages:
+		print(page.url, path)
 				
-		context = {'page':current_page}
-		return context
+				
