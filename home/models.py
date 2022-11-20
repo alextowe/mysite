@@ -12,6 +12,8 @@ class Logo(models.Model):
 
 class Page(models.Model):
 	title = models.CharField(max_length=50)
+	subtitle = models.CharField(max_length=150)
+	nav_title = models.CharField(default='', max_length=50)
 	list_order = models.CharField(max_length=50)
 	url = models.CharField(max_length=50)
 	date_added = models.DateTimeField(default=datetime.now, blank=True)

@@ -1,5 +1,6 @@
 from django import template
 from home.models import Logo, Page
+from blog.models import Post
 
 register = template.Library()
 
@@ -8,17 +9,22 @@ def render_nav_menu():
 	"""Renders the logo and pages models to the navbar."""
 	logo = Logo.objects.filter(is_published=True)
 	pages = Page.objects.order_by('list_order').filter(is_published=True)
-	nav_items = {'logo':logo, 'pages':pages}
-	return nav_items
+	return {'logo':logo, 'pages':pages}
 	
 @register.inclusion_tag('partials/_titlebar.html')
 def render_title_bar(path):
 	"""Renders the title bar for all pages except home."""
-	path = path[1:][:-1]
-	current_page = None
-	pages = Page.objects.order_by('list_order').filter(is_published=True, has_title=True)
+	if path == '/':
+		return None
+	elif len(path.split('/')) > 3:
+		path = path.split('/')[2]
+		context = Post.objects.filter(is_published=True, has_title=True, slug=path)[0]
+		print(path)
+	elif len(path.split('/')) <= 3:
+		path = path.split('/')[1]
+		context = Page.objects.filter(is_published=True, has_title=True, url=path).exclude(url='index')[0]
+		print(path)
 	
-	for page in pages:
-		print(page.url, path)
+	return {'context':context}
 				
 				
