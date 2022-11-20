@@ -1,5 +1,6 @@
 from django import template
-from pages.models import Logo, Page
+from home.models import Logo, Page
+
 register = template.Library()
 
 @register.inclusion_tag('partials/_navbar.html')
@@ -13,7 +14,6 @@ def render_nav_menu():
 @register.inclusion_tag('partials/_titlebar.html')
 def render_title_bar(path):
 	"""Renders the title bar for all pages except home."""
-
 	if path == '/':
 		return None
 	else:

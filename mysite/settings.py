@@ -29,7 +29,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
-	'pages.apps.PagesConfig',
+	'home.apps.HomeConfig',
 	'blog.apps.BlogConfig',
 	'django.contrib.admin',
 	'django.contrib.auth',
